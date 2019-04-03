@@ -1,25 +1,23 @@
 {
   "name": "zipfslaw",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
-    "react-scripts": "2.1.5"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "client": "cd client && yarn start",
+    "server": "nodemon server.js",
+    "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
-  "eslintConfig": {
-    "extends": "react-app"
+  "author": "Jai Kumar",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.0.1",
+    "yarn": "^1.13.0"
   },
-  "browserslist": [
-    ">0.2%",
-    "not dead",
-    "not ie <= 11",
-    "not op_mini all"
-  ]
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "d3": "^5.9.1",
+    "express": "^4.16.4",
+    "request": "^2.88.0"
+  }
 }
