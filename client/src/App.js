@@ -85,8 +85,7 @@ class App extends Component {
         </Router>*/}
         {/*<Barchart data={this.state.data} width={this.state.width} height={this.state.height} />*/}
         {this.state.showComponent ?
-           <Barchart cdata={this.state.responseToPost} width={this.state.width} height={this.state.height} /> :
-           null
+           <Barchart cdata={this.state.responseToPost} width={this.state.width} height={this.state.height} /> : null
         }
       </div>
     );
