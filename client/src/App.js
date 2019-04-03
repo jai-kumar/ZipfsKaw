@@ -18,11 +18,7 @@ class App extends Component {
       showComponent: false,
       response: '',
       post: '',
-      responseToPost: '',//[{"word": "UI", "frequency": "150"}],
-      data: [{"name": "english", "marks": 5},{"name": "maths", "marks": 8}],//12, 5, 6, 6, 9, 10
-      width: 700,
-      height: 500,
-      id: 'root'
+      responseToPost: ''
     };
     this._onButtonClick = this._onButtonClick.bind(this);
   }
@@ -69,24 +65,46 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <form onSubmit={this.handleSubmit}>
-            <input
-              type="text"
-              value={this.state.post}
-              onChange={e => this.setState({ post: e.target.value })}
-            />
-            <button type="submit" onClick={this.handleSubmit}>Submit</button>
-          </form>
-          <p className="data">{this.state.responseToPost}</p>
-        </header>
-        {/*<Router>
-          <Route exact path='/barChart' component={Barchart} render={(state.data) => <Barchart data={this.state.data} />} />
-        </Router>*/}
-        {/*<Barchart data={this.state.data} width={this.state.width} height={this.state.height} />*/}
-        {this.state.showComponent ?
-           <Barchart cdata={this.state.responseToPost} width={this.state.width} height={this.state.height} /> : null
-        }
+        {/*Nav Bar - Start*/}
+        <nav className="navbar navbar-inverse navBarMargin">
+          <div className="container-fluid">
+            <div className="navbar-header">
+                <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>
+                  <span className="icon-bar"></span>                        
+                </button>
+                <a className="navbar-brand">Zipf's Law</a>
+            </div>
+            <div className="collapse navbar-collapse" id="myNavbar">
+                <ul className="nav navbar-nav">
+                  <li className="home active">Home</li>
+                  <li className="about">About</li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+        {/*Nav Bar - End*/}
+
+        {/*App Body - Start*/}
+          <div className="row">
+            <div className="col col-md-offset-4 col-md-4 col-sm-12 col-xs-12">
+            <form onSubmit={this.handleSubmit} classsName="form-inline col offset-md-4 col-md-4 col-sm-12 col-xs-12">
+              <div className="form-group">
+                <input type="email" className="form-control" onChange={e => this.setState({ post: e.target.value })} value={this.state.post} />
+                <button type="submit" className="btn btn-primary" onClick={this.handleSubmit}>Submit</button>
+              </div>
+            </form>
+            {/*<p className="data">{this.state.responseToPost}</p>*/}
+            </div>
+          </div>
+
+          <div className="chartWrapper">
+            {this.state.showComponent ?
+              <Barchart chartdata={this.state.responseToPost} width={this.state.width} height={this.state.height} /> : null
+            }
+          </div>
+        {/*App Body - End*/}
       </div>
     );
   }

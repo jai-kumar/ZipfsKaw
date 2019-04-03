@@ -32,6 +32,14 @@ app.post('/api/searchword', (req, res) => {
     			return /\S/.test(str);
 			});
 
+			function sortObject(a) {
+				a.sort(function(x, y) {
+				    return y.frequency - x.frequency;
+				});
+
+				return a;
+			}
+
 			function frequencies(a){
 			    return new Map([...new Set(a)].map(
 			        x => [x, a.filter(y => y === x).length]
@@ -39,14 +47,17 @@ app.post('/api/searchword', (req, res) => {
 			}
 
 			function getFrequencyObject(array) {
-			  frequencies(array).forEach((val, key) => {
-			    let frequencyObj = {
-			    	"word" : key,
-			    	"frequency" : val
-				}
-			    FrequencyArray.push(frequencyObj);
-			  });
-			  return FrequencyArray;
+		  		frequencies(array).forEach((val, key) => {
+			    	let frequencyObj = {
+			    		"word" : key,
+			    		"frequency" : val
+					}
+			    	FrequencyArray.push(frequencyObj);
+			  	});
+
+		  		FrequencyArray = sortObject([...FrequencyArray]);
+		  		
+		  		return FrequencyArray;
 			}
 
 			finalData = getFrequencyObject(arrayWithoutSpecialChars);
